@@ -81,8 +81,7 @@ const refreshRouter = async (req, res, next) => {
         const noPermsUser = new CodedError(401, '[Refresh] User cannot refresh Guppy without a valid token that has admin_access method on guppy service for resource path /guppy_admin');
         throw noPermsUser;
       }
-      await server.stop();
-      await initializeAndStartServer();
+      await esInstance.initialize();
     }
     res.send('[Refresh] guppy refreshed successfully');
   } catch (err) {
